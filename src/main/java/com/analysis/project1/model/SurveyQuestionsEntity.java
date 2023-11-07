@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name = "Survey_Questions2")
+@Table(name = "Survey_Questions")
 public class SurveyQuestionsEntity {
 	@Id
 	@Column(name = "SurveyId")
