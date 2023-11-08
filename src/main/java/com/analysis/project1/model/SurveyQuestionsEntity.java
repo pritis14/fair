@@ -2,63 +2,70 @@ package com.analysis.project1.model;
 
 import java.util.Date;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
+import jakarta.persistence.*;
 
 
 @Entity
 @Table(name = "Survey_Questions")
 public class SurveyQuestionsEntity {
-	@Id
-	@Column(name = "SurveyId")
-	public Integer SurveyId;
-	@Column(name = "QuesId")
-	private Integer QuesId;
-	@Column(name = "QuesDescription")
-	private String QuesDescription;
-    @Column(name = "ActivityDate")
-	private Date ActivityDate;
-    
- @Override
- public String toString() {
-	 return "Survey_Question( SurveyId"+ SurveyId+"QuesId"+QuesId+"QuesDescription"+"QuesDescription)";
- }
 
-public Integer getSurveyId() {
-	return SurveyId;
-}
+	@EmbeddedId
+	private MyKey myKey;
 
-public void setSurveyId(Integer surveyId) {
-	SurveyId = surveyId;
-}
+	public MyKey getMyKey() {
+		return myKey;
+	}
 
-public Integer getQuesId() {
-	return QuesId;
-}
+	public void setMyKey(MyKey myKey) {
+		this.myKey = myKey;
+	}
 
-public void setQuesId(Integer quesId) {
-	QuesId = quesId;
-}
+	//	@Id
+//	@Column(name = "surveyId")
+//	public Integer surveyId;
+//	@Id
+//	@Column(name = "quesId")
+//	private Integer quesId;
+	@Column(name = "quesDescription")
+	private String quesDescription;
+    @Column(name = "activityDate")
+	private Date activityDate;
+
+// @Override
+// public String toString() {
+//	 return "Survey_Question( SurveyId"+ surveyId+"QuesId"+quesId+"QuesDescription"+quesDescription+")";
+// }
+
+//public Integer getSurveyId() {
+//	return surveyId;
+//}
+//
+//public void setSurveyId(Integer surveyId) {
+//	surveyId = surveyId;
+//}
+
+//public Integer getQuesId() {
+//	return quesId;
+//}
+//
+//public void setQuesId(Integer quesId) {
+//	quesId = quesId;
+//}
 
 public String getQuesDescription() {
-	return QuesDescription;
+	return quesDescription;
 }
 
 public void setQuesDescription(String quesDescription) {
-	QuesDescription = quesDescription;
+	quesDescription = quesDescription;
 }
 
 public Date getActivityDate() {
-	return ActivityDate;
+	return activityDate;
 }
 
 public void setActivityDate(Date activityDate) {
-	ActivityDate = activityDate;
+	activityDate = activityDate;
 }
  
 

@@ -36,8 +36,8 @@ public class SurveyQuestionsController {
 		return new ResponseEntity<List<SurveyQuestionsEntity>>(list, new HttpHeaders(), HttpStatus.OK);
 	}
 	
-//	@GetMapping("/bySurveyAndQuestionId")
-//	 public ResponseEntity<List<SurveyQuestionsEntity>> getSurveyQuestionById(@RequestParam Integer surveyId)
+//	@GetMapping("/bySurveyAndQuestionId/{surveyId}")
+//	 public ResponseEntity<List<SurveyQuestionsEntity>> getSurveyQuestionById(@PathVariable Integer surveyId)
 //	                                              throws RecordNotFoundException {
 //		List<SurveyQuestionsEntity> list = service.getSurveyQuestionById(surveyId);
 //		return new ResponseEntity<List<SurveyQuestionsEntity>>(list, new HttpHeaders(), HttpStatus.OK);

@@ -29,7 +29,7 @@ public class SurveyQuestionsService {
 //	public List<SurveyQuestionsEntity> getSurveyQuestionById(Integer QuesId) throws RecordNotFoundException
 //    {
 //        //List<SurveyQuestionsEntity> Ques =repository.findBySurveyId(surveyId);
-//        List<SurveyQuestionsEntity> Ques =repository.findBySurveyId(QuesId);
+//        List<SurveyQuestionsEntity> Ques =repository.findAllBySurveyId(QuesId);
 //
 //        if(Ques.size()>0) {
 //            return Ques;
