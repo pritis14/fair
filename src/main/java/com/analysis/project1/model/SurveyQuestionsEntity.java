@@ -9,50 +9,78 @@ import jakarta.persistence.*;
 @Table(name = "Survey_Questions")
 public class SurveyQuestionsEntity {
 
-	@EmbeddedId
-	private MyKey myKey;
+//	@EmbeddedId
+//	private MyKey myKey;
+//
+//	public MyKey getMyKey() {
+//		return myKey;
+//	}
+//
+//	public void setMyKey(MyKey myKey) {
+//		this.myKey = myKey;
+//	}
 
-	public MyKey getMyKey() {
-		return myKey;
+	@Column(name = "surveyId")
+	public Integer surveyId;
+
+	public Integer getSurveyId() {
+		return surveyId;
 	}
 
-	public void setMyKey(MyKey myKey) {
-		this.myKey = myKey;
+	public void setSurveyId(Integer surveyId) {
+		surveyId = surveyId;
 	}
 
-	//	@Id
-//	@Column(name = "surveyId")
-//	public Integer surveyId;
-//	@Id
-//	@Column(name = "quesId")
-//	private Integer quesId;
+	@Id
+	@Column(name = "quesId")
+	private Integer quesId;
+
+	public Integer getQuesId() {
+		return quesId;
+	}
+
+	public void setQuesId(Integer quesId) {
+		quesId = quesId;
+	}
+
 	@Column(name = "quesDescription")
 	private String quesDescription;
     @Column(name = "activityDate")
 	private Date activityDate;
+    @Column(name = "quesType")
+	private String quesType;
+	@Column(name="quesNoLabel")
+	private String quesNoLabel;
 
-// @Override
-// public String toString() {
-//	 return "Survey_Question( SurveyId"+ surveyId+"QuesId"+quesId+"QuesDescription"+quesDescription+")";
-// }
+	public String getQuesNoLabel() {
+		return quesNoLabel;
+	}
 
-//public Integer getSurveyId() {
-//	return surveyId;
-//}
-//
-//public void setSurveyId(Integer surveyId) {
-//	surveyId = surveyId;
-//}
+	public void setQuesNoLabel(String quesNoLabel) {
+		this.quesNoLabel = quesNoLabel;
+	}
 
-//public Integer getQuesId() {
-//	return quesId;
-//}
-//
-//public void setQuesId(Integer quesId) {
-//	quesId = quesId;
-//}
+	public String getQuesYesLabel() {
+		return quesYesLabel;
+	}
 
-public String getQuesDescription() {
+	public void setQuesYesLabel(String quesYesLabel) {
+		this.quesYesLabel = quesYesLabel;
+	}
+
+	@Column(name="quesYesLabel")
+	private String quesYesLabel;
+
+
+	public String getQuesType() {
+		return quesType;
+	}
+
+	public void setQuesType(String quesType) {
+		this.quesType = quesType;
+	}
+
+	public String getQuesDescription() {
 	return quesDescription;
 }
 

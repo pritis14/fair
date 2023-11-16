@@ -25,6 +25,12 @@ public class SurveyQuestionsService {
 			return new ArrayList<SurveyQuestionsEntity>();
 		
 	}
+
+	public SurveyQuestionsEntity getBySurveyIdAndQuesType(Integer surveyId, String quesType){
+		SurveyQuestionsEntity surveyQuest=repository.findBySurveyIdAndQuesType(surveyId,quesType);
+			return surveyQuest;
+
+	}
 	
 //	public List<SurveyQuestionsEntity> getSurveyQuestionById(Integer QuesId) throws RecordNotFoundException
 //    {

@@ -6,11 +6,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.analysis.project1.exception.RecordNotFoundException;
@@ -35,15 +31,20 @@ public class SurveyQuestionsController {
 
 		return new ResponseEntity<List<SurveyQuestionsEntity>>(list, new HttpHeaders(), HttpStatus.OK);
 	}
+
+
 	
-//	@GetMapping("/bySurveyAndQuestionId/{surveyId}")
-//	 public ResponseEntity<List<SurveyQuestionsEntity>> getSurveyQuestionById(@PathVariable Integer surveyId)
+//	@GetMapping("/bySurveyAndQuestionId/{surveyid}/{quesType}")
+//	 public ResponseEntity<SurveyQuestionsEntity> getSurveyQuestionById(@PathVariable(surveyid) Integer surveyId,String quesType)
 //	                                              throws RecordNotFoundException {
-//		List<SurveyQuestionsEntity> list = service.getSurveyQuestionById(surveyId);
-//		return new ResponseEntity<List<SurveyQuestionsEntity>>(list, new HttpHeaders(), HttpStatus.OK);
-//
-//
-//	}
+
+	@RequestMapping(path="/bySurveyAndQuestionType/{surveyid}/{quesType}", method= RequestMethod.GET)
+//public String welcomepage(@PathVariable String name){
+	public ResponseEntity<SurveyQuestionsEntity> getSurveyQuestionById(@PathVariable("surveyid") int surveyId,@PathVariable String quesType)
+	                                              throws RecordNotFoundException {
+		SurveyQuestionsEntity list = service.getBySurveyIdAndQuesType(surveyId,quesType);
+		return new ResponseEntity<SurveyQuestionsEntity>(list, new HttpHeaders(), HttpStatus.OK);
+	}
 
 	/*
 	 * @GetMapping("/bySurveyAndQuestionId") public
