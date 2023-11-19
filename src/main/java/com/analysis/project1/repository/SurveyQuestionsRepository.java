@@ -9,7 +9,7 @@ import com.analysis.project1.model.SurveyQuestionsEntity;
 
 @Repository
 public interface SurveyQuestionsRepository 
-extends JpaRepository<SurveyQuestionsEntity, MyKey>{
+extends JpaRepository<SurveyQuestionsEntity, Integer>{
     SurveyQuestionsEntity findBySurveyIdAndQuesType(Integer surveyId, String quesType);
 	//List<SurveyQuestionsEntity> findAllBySurveyId(Integer SurveyId);
 //	List<SurveyQuestionsEntity> findByQuesId(Integer QuesId);

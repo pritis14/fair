@@ -31,6 +31,7 @@ public class SurveyQuestionsService {
 			return surveyQuest;
 
 	}
+
 	
 //	public List<SurveyQuestionsEntity> getSurveyQuestionById(Integer QuesId) throws RecordNotFoundException
 //    {

@@ -1,6 +1,9 @@
 package com.analysis.project1.controller;
 
 import java.util.List;
+
+import com.analysis.project1.model.SurveyReportEntity;
+import com.analysis.project1.service.SurveyReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,12 +16,16 @@ import com.analysis.project1.exception.RecordNotFoundException;
 import com.analysis.project1.model.SurveyQuestionsEntity;
 
 import com.analysis.project1.service.SurveyQuestionsService;
+import com.analysis.project1.repository.SurveyReportRepository;
 
 @RestController
+@CrossOrigin(maxAge = 99999)
 public class SurveyQuestionsController {
 
 	@Autowired
 	SurveyQuestionsService service;
+
+
 
 	@RequestMapping("/")
 	public String index() {
@@ -32,31 +39,22 @@ public class SurveyQuestionsController {
 		return new ResponseEntity<List<SurveyQuestionsEntity>>(list, new HttpHeaders(), HttpStatus.OK);
 	}
 
-
-	
-//	@GetMapping("/bySurveyAndQuestionId/{surveyid}/{quesType}")
-//	 public ResponseEntity<SurveyQuestionsEntity> getSurveyQuestionById(@PathVariable(surveyid) Integer surveyId,String quesType)
-//	                                              throws RecordNotFoundException {
-
 	@RequestMapping(path="/bySurveyAndQuestionType/{surveyid}/{quesType}", method= RequestMethod.GET)
-//public String welcomepage(@PathVariable String name){
 	public ResponseEntity<SurveyQuestionsEntity> getSurveyQuestionById(@PathVariable("surveyid") int surveyId,@PathVariable String quesType)
 	                                              throws RecordNotFoundException {
 		SurveyQuestionsEntity list = service.getBySurveyIdAndQuesType(surveyId,quesType);
+		if (list==null)
+		{
+			return new ResponseEntity<SurveyQuestionsEntity>(null, new HttpHeaders(), HttpStatus.NOT_FOUND);
+		}
 		return new ResponseEntity<SurveyQuestionsEntity>(list, new HttpHeaders(), HttpStatus.OK);
 	}
-
-	/*
-	 * @GetMapping("/bySurveyAndQuestionId") public
-	 * ResponseEntity<List<SurveyQuestionsEntity>>
-	 * getSurveyQuestionById(@RequestParam Integer surveyId, @RequestParam Integer
-	 * quesId) throws RecordNotFoundException { List<SurveyQuestionsEntity> list =
-	 * service.getSurveyQuestionById(surveyId,quesId); return new
-	 * ResponseEntity<List<SurveyQuestionsEntity>>(list, new HttpHeaders(),
-	 * HttpStatus.OK);
-	 * 
-	 * 
-	 * }
-	 */
+	@Autowired
+	SurveyReportService reportSevice;
+	@PostMapping("/saveReport/all")
+	public ResponseEntity<SurveyReportEntity> createComment(@RequestBody SurveyReportEntity data) {
+		SurveyReportEntity list  = reportSevice.saveReport(data);
+		return new ResponseEntity<SurveyReportEntity>(list, new HttpHeaders(), HttpStatus.OK);
+	}
 
 }
