@@ -4,9 +4,12 @@ import java.util.List;
 
 import com.analysis.project1.model.SurveyReportEntity;
 import com.analysis.project1.service.SurveyReportService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +20,12 @@ import com.analysis.project1.model.SurveyQuestionsEntity;
 
 import com.analysis.project1.service.SurveyQuestionsService;
 import com.analysis.project1.repository.SurveyReportRepository;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @CrossOrigin(maxAge = 99999)
 public class SurveyQuestionsController {
+	private static final Logger logger = LoggerFactory.getLogger(SurveyQuestionsController.class);
 
 	@Autowired
 	SurveyQuestionsService service;
@@ -52,9 +57,17 @@ public class SurveyQuestionsController {
 	@Autowired
 	SurveyReportService reportSevice;
 	@PostMapping("/saveReport/all")
-	public ResponseEntity<SurveyReportEntity> createComment(@RequestBody SurveyReportEntity data) {
+	public ResponseEntity<SurveyReportEntity> createReport(@RequestBody SurveyReportEntity data) {
 		SurveyReportEntity list  = reportSevice.saveReport(data);
 		return new ResponseEntity<SurveyReportEntity>(list, new HttpHeaders(), HttpStatus.OK);
+	}
+
+	@PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity uploadFile(@RequestParam MultipartFile[] files) {
+		for (int i = 0; i < files.length; i++) {
+			logger.info(String.format("File name '%s' uploaded successfully.", files[i].getOriginalFilename()));
+		}
+		return ResponseEntity.ok().build();
 	}
 
 }

@@ -2,6 +2,8 @@ package com.analysis.project1.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.persistence.Lob;
+
 import java.util.Date;
 
 
@@ -23,14 +25,27 @@ public class SurveyReportEntity {
     @Column(name="name")
     private String name;
 
+    @Lob
     @Column(name="report")
     private String report;
 
     @Column(name="surveyId")
     private String surveyId;
 
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
+    }
+
     @Column(name="emailId")
     private String emailId;
+
+    @Lob
+    @Column(name="data")
+    private byte[] data;
 
     @Column(name="activityDate",nullable = true, updatable = true)
     @Temporal(TemporalType.TIMESTAMP)
