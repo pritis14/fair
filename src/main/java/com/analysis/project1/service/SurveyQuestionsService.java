@@ -33,17 +33,5 @@ public class SurveyQuestionsService {
 	}
 
 	
-//	public List<SurveyQuestionsEntity> getSurveyQuestionById(Integer QuesId) throws RecordNotFoundException
-//    {
-//        //List<SurveyQuestionsEntity> Ques =repository.findBySurveyId(surveyId);
-//        List<SurveyQuestionsEntity> Ques =repository.findAllBySurveyId(QuesId);
-//
-//        if(Ques.size()>0) {
-//            return Ques;
-//        } else {
-//            throw new RecordNotFoundException("No Surevey and Question record exist for given Survey id and Question Id ",QuesId);
-//        }
-//    }
-	
 
 }
