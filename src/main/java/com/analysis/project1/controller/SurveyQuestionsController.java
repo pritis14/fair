@@ -27,8 +27,12 @@ public class SurveyQuestionsController {
 
 	@Autowired
 	SurveyQuestionsService service;
+
+	@Autowired
 	SurveyQuestions1Service service1;
+	@Autowired
 	SurveyQuestions2Service service2;
+	@Autowired
 	SurveyQuestions3Service service3;
 
 
@@ -67,7 +71,7 @@ public class SurveyQuestionsController {
 		return new ResponseEntity<SurveyQuestions1Entity>(list, new HttpHeaders(), HttpStatus.OK);
 	}
 
-	@RequestMapping(path="/bySurvey2AndQuestionType/bySurvey2AndQuestionType/{surveyid}/{quesType}", method= RequestMethod.GET)
+	@RequestMapping(path="/bySurvey2AndQuestionType/{surveyid}/{quesType}", method= RequestMethod.GET)
 	public ResponseEntity<SurveyQuestions2Entity> getSurvey2QuestionById(@PathVariable("surveyid") int surveyId, @PathVariable String quesType)
 			throws RecordNotFoundException {
 		SurveyQuestions2Entity list = service2.getBySurveyIdAndQuesType(surveyId,quesType);
